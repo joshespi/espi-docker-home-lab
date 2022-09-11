@@ -1,0 +1,16 @@
+services:
+  mc:
+    container_name: mc_norm
+    image: itzg/minecraft-server
+    ports:
+      - 25565:25565
+    environment:
+      MOTD: "Xanders Normal, Chill Vibes Only"
+      EULA: "TRUE"
+      MEMORY: "2G"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_PORT: 28016
+      restart: always
+    volumes:
+      - ./minecraft:/data

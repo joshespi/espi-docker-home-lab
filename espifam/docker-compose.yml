@@ -1,0 +1,57 @@
+version: "3.1"
+
+services:
+  espifam_db:
+    image: mariadb:10.9.2
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: always
+    env_file: .env
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
+      MYSQL_DATABASE: wordpress
+    container_name: espifam_db
+  
+  espifam_wp:
+    depends_on:
+      - espifam_db
+    image: wordpress
+    hostname: espifam.com
+    image: wordpress:php8.1-apache
+    build: 
+      dockerfile: ./Dockerfile
+      context: .
+    ports:
+      - 8080:80
+      - 8443:443
+    restart: always
+    env_file: .env
+    environment:
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_HOST: espifam_db
+      WORDPRESS_DB_USER: $MYSQL_USER
+      WORDPRESS_DB_PASSWORD: $MYSQL_PASSWORD
+      WORDPRESS_TABLE_PREFIX: fam_
+    container_name: espifam_wp
+    volumes:
+      - ./wordpress:/var/www/html
+      - ./conf/apache:/etc/apache2/sites-available
+      - /etc/letsencrypt:/etc/letsencrypt
+  espifam_myadmin:
+    image: phpmyadmin:5.2.0
+    container_name: espifam_myadmin
+    restart: "no"
+    ports:
+      - 5000:80
+    env_file: .env
+    environment:
+      PMA_HOST: espifam_db
+      PMA_USER: $MYSQL_USER
+      PMA_PASSWORD: $MYSQL_PASSWORD
+      UPLOAD_LIMIT: 100M
+    depends_on:
+      - espifam_db
+volumes:
+  db_data:
+  wordpress:
+  conf:

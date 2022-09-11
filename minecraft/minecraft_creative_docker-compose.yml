@@ -1,0 +1,18 @@
+services:
+  mc:
+    container_name: mc_create
+    image: itzg/minecraft-server
+    ports:
+      - 25566:25565
+    environment:
+      MOTD: "Xanders Creative World"
+      EULA: "TRUE"
+      LEVEL_TYPE: "FLAT"
+      MODE: "creative"
+      MEMORY: "2G"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_PORT: 28015
+      restart: always
+    volumes:
+      - ./minecraft:/data
