@@ -5,7 +5,7 @@ services:
     ports:
       - 25565:25565
     environment:
-      MOTD: "Xanders Normal, Chill Vibes Only"
+      MOTD: "Xanders survival, Chill Vibes Only"
       EULA: "TRUE"
       MEMORY: "2G"
       ENABLE_RCON: "true"
