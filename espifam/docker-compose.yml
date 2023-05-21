@@ -15,15 +15,15 @@ services:
   espifam_wp:
     depends_on:
       - espifam_db
-    image: wordpress
-    hostname: espifam.com
-    image: wordpress:php8.1-apache
+        #    image: wordpress
+      #    hostname: espifam.com
+    # image: wordpress:php8.1-apache
     build: 
       dockerfile: ./Dockerfile
       context: .
     ports:
-      - 8080:80
-      - 8443:443
+     - 8080:80
+      # - 8443:443
     restart: always
     env_file: .env
     environment:
@@ -32,11 +32,16 @@ services:
       WORDPRESS_DB_USER: $MYSQL_USER
       WORDPRESS_DB_PASSWORD: $MYSQL_PASSWORD
       WORDPRESS_TABLE_PREFIX: fam_
+      # WORDPRESS_DEBUG: "1"
+      # WORDPRESS_DEBUG: "true"
+      # WP_DEBUG_DISPLAY: "true"
+      # WP_DEBUG_LOG: "true"
     container_name: espifam_wp
     volumes:
       - ./wordpress:/var/www/html
-      - ./conf/apache:/etc/apache2/sites-available
-      - /etc/letsencrypt:/etc/letsencrypt
+      # - ./wp-content:/var/www/html/wp-content/
+#      - ./conf/apache:/etc/apache2/sites-available
+#      - /etc/letsencrypt:/etc/letsencrypt
   espifam_myadmin:
     image: phpmyadmin:5.2.0
     container_name: espifam_myadmin
@@ -54,4 +59,4 @@ services:
 volumes:
   db_data:
   wordpress:
-  conf:
+    #  conf:
