@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: unless-stopped
+    ports:
+      - 8053:53/tcp
+      - 8053:53/udp
+      - 8314:80
+      - 4314:443
+    environment:
+      TZ: America/Denver
+    volumes:
+      - ./pihole_data_dir:/etc/pihole
+      - ./dnsmasq_data_dir:/etc/dnsmasq.d
+    dns:
+      - 127.0.0.1
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - pihole_net
+
+networks:
+  pihole_net:
