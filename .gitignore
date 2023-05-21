@@ -1,5 +1,4 @@
-espifam/.env
-espifam/db_data/
-espifam/wordpress/
 pihole_data_dir/
 dnsmasq_data_dir/
+minecraft/mc_create
+minecraft/mc_norm
