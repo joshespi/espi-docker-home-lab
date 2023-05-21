@@ -1,5 +1,5 @@
 services:
-  mc:
+  mc_create:
     container_name: mc_create
     image: itzg/minecraft-server
     ports:
@@ -9,10 +9,10 @@ services:
       EULA: "TRUE"
       LEVEL_TYPE: "FLAT"
       MODE: "creative"
-      MEMORY: "2G"
+      MEMORY: "1G"
       ENABLE_RCON: "true"
       RCON_PASSWORD: ${RCON_PASSWORD}
       RCON_PORT: 28015
       restart: always
     volumes:
-      - ./minecraft:/data
+      - ./mc_create:/data
