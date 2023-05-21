@@ -1,3 +1,5 @@
-
 espifam/.env
-espifam/.DS_Store
+espifam/db_data/
+espifam/wordpress/
+pihole_data_dir/
+dnsmasq_data_dir/
