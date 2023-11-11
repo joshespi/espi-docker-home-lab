@@ -11,3 +11,10 @@ Stop the systemd-resolved service to use the standard DNS ports:
 ```sudo systemctl stop systemd-resolved && sudo systemctl disable systemd-resolved```
 
 Edit the /etc/resolv.conf file and update the nameserver line to point the device back to its own IP address. This allows DNS resolution since we turned off systemd-resolved.
+
+
+
+
+op player in minecraft image
+
+docker exec mc_create mc-send-to-console op joshespi
