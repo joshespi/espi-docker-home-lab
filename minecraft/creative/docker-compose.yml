@@ -9,7 +9,7 @@ services:
       EULA: "TRUE"
       LEVEL_TYPE: "FLAT"
       MODE: "creative"
-      MEMORY: "1G"
+      MEMORY: "2G"
       ENABLE_RCON: "true"
       RCON_PASSWORD: ${RCON_PASSWORD}
       RCON_PORT: 28015

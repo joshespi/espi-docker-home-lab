@@ -7,7 +7,7 @@ services:
     environment:
       MOTD: "Xanders survival, Chill Vibes Only"
       EULA: "TRUE"
-      MEMORY: "1G"
+      MEMORY: "2G"
       ENABLE_RCON: "true"
       RCON_PASSWORD: ${RCON_PASSWORD}
       RCON_PORT: 28016

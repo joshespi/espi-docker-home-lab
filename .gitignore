@@ -1,4 +1,4 @@
 pihole_data_dir/
 dnsmasq_data_dir/
-minecraft/mc_create
-minecraft/mc_norm
+minecraft/creative/mc_create
+minecraft/survival/mc_norm
