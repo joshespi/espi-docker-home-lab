@@ -2,17 +2,22 @@ services:
   mc_create:
     container_name: mc_create
     image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
     ports:
       - 25566:25565
     environment:
-      MOTD: "Xanders Creative World"
+      MOTD: "worldname"
       EULA: "TRUE"
       LEVEL_TYPE: "FLAT"
       MODE: "creative"
-      MEMORY: "2G"
+      MEMORY: "4G"
       ENABLE_RCON: "true"
-      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_PASSWORD: "adminpass"
+      ENABLE_WHITELIST: "true"
+      OVERRIDE_WHITELIST: "true"
+      WHITELIST: "user1,user2"
       RCON_PORT: 28015
-      restart: always
+    restart: always
     volumes:
       - ./mc_create:/data
