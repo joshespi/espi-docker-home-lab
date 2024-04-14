@@ -2,15 +2,21 @@ services:
   mc_norm:
     container_name: mc_norm
     image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
     ports:
       - 25565:25565
     environment:
-      MOTD: "Xanders survival, Chill Vibes Only"
+      MOTD: "server MOTD"
       EULA: "TRUE"
-      MEMORY: "2G"
+      MEMORY: "4G"
       ENABLE_RCON: "true"
-      RCON_PASSWORD: ${RCON_PASSWORD}
+      RCON_PASSWORD: "adminpass"
       RCON_PORT: 28016
-      restart: always
+      PVP: "false"
+      ENABLE_WHITELIST: "true"
+      OVERRIDE_WHITELIST: "true"
+      WHITELIST: "user1,user2"
+    restart: always
     volumes:
       - ./mc_norm:/data
