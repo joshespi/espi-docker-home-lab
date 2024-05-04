@@ -1,9 +1,19 @@
 # Espi Docker Home Lab
-This repository provides examples of YAML files for running containers in a home lab environment using Docker. To start the containers, use the following command:
+This repository provides examples of YAML files for running containers in a home lab environment using Docker.
 
 
-
-```docker-compose -f filename.yml up -d```
+## Container Management
+### Build/Start Containers
+To start the containers navigate into the folders and run the following commands:
+```bash
+docker-compose pull
+docker-compose build
+docker-compose  up -d
+```
+### Stop Containers
+```bash
+docker-compose down
+```
 ## Pihole Container
 To run Pihole on Ubuntu, follow these steps:
 Stop the systemd-resolved service to use the standard DNS ports:
