@@ -1,0 +1,50 @@
+
+services:
+  wp_db:
+    image: mariadb:10.11
+    volumes:
+      - ./db_data:/var/lib/mysql
+    restart: always
+    env_file: .env
+    environment:
+      MARIADB_ROOT_PASSWORD: $MYSQL_ROOT
+      MARIADB_USER: $MYSQL_USER
+      MARIADB_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: wordpress
+    container_name: wp_db
+  
+  wp_web:
+    depends_on:
+      - wp_db
+    build: 
+      dockerfile: ./Dockerfile
+      context: .
+    ports:
+     - 8080:80
+    restart: always
+    env_file: .env
+    environment:
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_HOST: wp_db
+      WORDPRESS_DB_USER: $MYSQL_USER
+      WORDPRESS_DB_PASSWORD: $MYSQL_PASSWORD
+      WORDPRESS_TABLE_PREFIX: espi_
+    container_name: wp_web
+    volumes:
+      - ./wordpress:/var/www/html
+  
+  wp_myadmin:
+    image: phpmyadmin:latest
+    container_name: wp_myadmin
+    restart: "no"
+    ports:
+      - 8089:80
+    env_file: .env
+    environment:
+      PMA_HOST: wp_db
+      UPLOAD_LIMIT: 100M
+    depends_on:
+      - wp_db
+volumes:
+  db_data:
+  wordpress:
