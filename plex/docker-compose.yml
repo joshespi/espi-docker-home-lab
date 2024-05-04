@@ -1,0 +1,25 @@
+services:
+  plex:
+    image: plexinc/pms-docker
+    container_name: plex
+    restart: unless-stopped
+    environment:
+      # - PLEX_CLAIM=claimToken  # Replace "claimToken" with your claim token from https://www.plex.tv/claim/
+      - TZ=America/Denver  
+      - ADVERTISE_IP=http://192.168.1.38:32400/   
+    volumes:
+      - /path/to/media:/media
+      - ./plex_config:/config
+    ports:
+      - 32400:32400/tcp
+      - 3005:3005/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+volumes:
+  plex_config:
+    name: plex_config
