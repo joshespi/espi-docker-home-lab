@@ -23,8 +23,7 @@ Stop the systemd-resolved service to use the standard DNS ports:
 Edit the /etc/resolv.conf file and update the nameserver line to point the device back to its own IP address. This allows DNS resolution since we turned off systemd-resolved.
 
 
+## Minecraft Image documentation -> https://docker-minecraft-server.readthedocs.io/en/latest/commands/
 
-
-op player in minecraft image
-
-docker exec mc_create mc-send-to-console op joshespi
+to attach to console
+docker exec -i mc_image rcon-cli
