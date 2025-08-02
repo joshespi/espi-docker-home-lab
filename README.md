@@ -22,6 +22,8 @@ Stop the systemd-resolved service to use the standard DNS ports:
 
 Edit the /etc/resolv.conf file and update the nameserver line to point the device back to its own IP address. This allows DNS resolution since we turned off systemd-resolved.
 
+Docker's default network mode bridge isolates the container from the host's network. This is a more secure setting, but requires setting the Pi-hole DNS option for Interface listening behavior to "Listen on all interfaces, permit all origins".
+
 
 ## Minecraft Container
 Image documentation -> https://docker-minecraft-server.readthedocs.io/en/latest/commands/
