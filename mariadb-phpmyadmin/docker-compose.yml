@@ -1,0 +1,26 @@
+services:
+  db:
+    image: mariadb:${MARIADB_VERSION}
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db_data:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    networks:
+      - db_network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - 8085:80
+    environment:
+      PMA_HOST: db
+    networks:
+      - db_network
+
+networks:
+  db_network:
+    driver: bridg
