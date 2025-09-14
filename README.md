@@ -30,3 +30,10 @@ Image documentation -> https://docker-minecraft-server.readthedocs.io/en/latest/
 
 to attach to console
 docker exec -i mc_image rcon-cli
+
+## mariadb-phpmyadmin
+.env requirements
+```bash
+MARIADB_VERSION=11.7.2
+MARIADB_ROOT_PASSWORD='root'
+```
