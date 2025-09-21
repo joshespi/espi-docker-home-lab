@@ -1,7 +1,7 @@
 
 services:
   wp_db:
-    image: mariadb:10.11
+    image: mariadb:11.3.2
     volumes:
       - ./db_data:/var/lib/mysql
     restart: always
@@ -29,6 +29,10 @@ services:
       WORDPRESS_DB_USER: $MYSQL_USER
       WORDPRESS_DB_PASSWORD: $MYSQL_PASSWORD
       WORDPRESS_TABLE_PREFIX: espi_
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'MEDIA_TRASH', true );
+        define('EMPTY_TRASH_DAYS', 30); 
+        define('DISALLOW_FILE_EDIT', true);
     container_name: wp_web
     volumes:
       - ./wordpress:/var/www/html
