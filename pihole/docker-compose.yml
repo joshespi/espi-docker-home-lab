@@ -20,7 +20,7 @@ services:
       - NET_ADMIN
     networks:
       - pihole_net
-
+    entrypoint: ["/bin/sh", "-c", "echo 'nameserver 127.0.0.1' >> /etc/resolv.conf && exec /s6-init"]
 networks:
   pihole_net:
     # driver: bridge
