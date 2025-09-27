@@ -1,7 +1,7 @@
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+    build: .
     restart: unless-stopped
     ports:
       - 53:53/tcp
@@ -20,14 +20,6 @@ services:
       - NET_ADMIN
     networks:
       - pihole_net
-    entrypoint: ["/bin/sh", "-c", "echo 'nameserver 127.0.0.1' >> /etc/resolv.conf && exec /s6-init"]
 networks:
   pihole_net:
-    # driver: bridge
-    # ipam:
-    #   driver: default
-    #   config:
-    #     - subnet: 172.20.0.0/24
-    #       gateway: 172.20.0.1
-    #       aux_addresses:
-    #         pihole_ip: 172.20.0.2
+    driver: bridge
