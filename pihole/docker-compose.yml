@@ -16,6 +16,7 @@ services:
       - ./dnsmasq_data_dir:/etc/dnsmasq.d
     dns:
       - 127.0.0.1
+      - 192.168.86.241
     cap_add:
       - NET_ADMIN
     networks:
