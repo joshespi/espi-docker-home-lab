@@ -36,3 +36,13 @@ docker exec -i mc_image rcon-cli
 MARIADB_VERSION=11.7.2
 MARIADB_ROOT_PASSWORD='root'
 ```
+
+## Nextcloud
+.env requirements
+```bash
+MYSQL_HOST=mariadb
+MYSQL_DATABASE=nextcloud
+MYSQL_USER=nextcloud
+MYSQL_PASSWORD=yourpassword
+MYSQL_ROOT_PASSWORD=yourrootpassword
+```
