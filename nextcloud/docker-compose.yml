@@ -33,4 +33,3 @@ services:
 
 networks:
   nextcloud_net:
-    external: true
