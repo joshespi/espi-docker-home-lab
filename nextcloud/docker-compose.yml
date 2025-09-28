@@ -6,7 +6,7 @@ services:
     ports:
       - 8025:8025
     volumes:
-      - /home/joshe:/var/www/html
+      - /home/joshe/storage1/espi-files:/var/www/html
     environment:
       - MYSQL_HOST=${MYSQL_HOST}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
