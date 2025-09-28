@@ -19,7 +19,7 @@ services:
 
   nextlcoud_mariadb:
     image: mariadb:11.7
-    container_name: nextlcoud_mariadb
+    container_name: nextcloud_mariadb
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
