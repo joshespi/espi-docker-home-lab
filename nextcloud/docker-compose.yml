@@ -4,7 +4,7 @@ services:
     container_name: nextcloud
     restart: unless-stopped
     ports:
-      - 8025:8025
+      - 8025:80
     volumes:
       - /home/joshe/storage1/espi-files:/var/www/html
     environment:
