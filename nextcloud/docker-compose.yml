@@ -13,11 +13,11 @@ services:
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     depends_on:
-      - nextlcoud_mariadb
+      - nextcloud_mariadb
     networks:
       - nextcloud_net
 
-  nextlcoud_mariadb:
+  nextcloud_mariadb:
     image: mariadb:11.7
     container_name: nextcloud_mariadb
     restart: unless-stopped
