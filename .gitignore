@@ -7,4 +7,4 @@ wordpress/db_data/
 wordpress/wordpress
 nextcloud/.env
 nextcloud/mariadb_data/
-nextcloud/nexcloud_data/
+nextcloud/nextcloud_data/
