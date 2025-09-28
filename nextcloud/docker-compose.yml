@@ -6,7 +6,7 @@ services:
     ports:
       - 8025:80
     volumes:
-      - /home/joshe/storage1/espi-files:/var/www/html
+      - ./nexcloud_data:/var/www/html
     environment:
       - MYSQL_HOST=${MYSQL_HOST}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
