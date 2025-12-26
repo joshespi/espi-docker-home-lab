@@ -1,0 +1,15 @@
+services:
+  terraria:
+    image: ryshe/terraria:latest
+    container_name: terraria
+    ports:
+      - "7777:7777"
+    volumes:
+      - ./world:/root/.local/share/Terraria/Worlds
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    command: >
+      -world /root/.local/share/Terraria/Worlds/world.wld
+      -autocreate 3
+      -worldname world   
