@@ -1,42 +1,47 @@
-
 services:
   wp_db:
-    image: mariadb:11.3.2
+    image: mariadb:11.4
     volumes:
-      - ./db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     restart: always
     env_file: .env
     environment:
-      MARIADB_ROOT_PASSWORD: $MYSQL_ROOT
-      MARIADB_USER: $MYSQL_USER
-      MARIADB_PASSWORD: $MYSQL_PASSWORD
-      MYSQL_DATABASE: wordpress
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT}
+      MARIADB_USER: ${MYSQL_USER}
+      MARIADB_PASSWORD: ${MYSQL_PASSWORD}
+      MARIADB_DATABASE: wordpress
     container_name: wp_db
-  
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   wp_web:
     depends_on:
-      - wp_db
-    build: 
+      wp_db:
+        condition: service_healthy
+    build:
       dockerfile: ./Dockerfile
       context: .
     ports:
-     - 8080:80
+      - 8080:80
     restart: always
     env_file: .env
     environment:
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_HOST: wp_db
-      WORDPRESS_DB_USER: $MYSQL_USER
-      WORDPRESS_DB_PASSWORD: $MYSQL_PASSWORD
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
       WORDPRESS_TABLE_PREFIX: espi_
       WORDPRESS_CONFIG_EXTRA: |
         define( 'MEDIA_TRASH', true );
-        define('EMPTY_TRASH_DAYS', 30); 
+        define('EMPTY_TRASH_DAYS', 30);
         define('DISALLOW_FILE_EDIT', true);
     container_name: wp_web
     volumes:
       - ./wp-content:/var/www/html/wp-content
-  
+
   wp_myadmin:
     image: phpmyadmin:latest
     container_name: wp_myadmin
@@ -48,7 +53,8 @@ services:
       PMA_HOST: wp_db
       UPLOAD_LIMIT: 100M
     depends_on:
-      - wp_db
+      wp_db:
+        condition: service_healthy
+
 volumes:
   db_data:
-  wordpress:
